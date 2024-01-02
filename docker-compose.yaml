@@ -1,0 +1,38 @@
+version: '3'
+services:
+  backend:
+    build: ./IMAG_backend/.
+    container_name: IMAG-backend
+    env_file:
+      - ./IMAG_backend/.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  front:
+    build:
+      context: ./IMAG-FRONT
+      dockerfile: ./nginx.Dockerfile
+    container_name: IMAG-front
+    ports:
+      - 80:80
+    volumes:
+      - type: bind
+        source: ./IMAG-FRONT/IMAG-FRONT
+        target: /workspace/IMAG-FRONT
+        bind:
+          propagation: rshared
+
+  builder:
+    build: 
+      context: ./IMAG-FRONT
+      dockerfile: ./node.Dockerfile
+    container_name: IMAG-builder
+    volumes:
+      - type: bind
+        source: ./IMAG-FRONT/IMAG-FRONT
+        target: /workspace/IMAG-FRONT
+        bind:
+          propagation: rshared
+    env_file:
+      - ./IMAG-FRONT/.env
+    
+

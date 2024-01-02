@@ -1,0 +1,51 @@
+{
+  "name": "react-static-example-basic",
+  "private": true,
+  "homepage": "https://github.com/Njust-imag/Njust-imag.github.io",
+  "scripts": {
+    "start": "react-static start",
+    "stage": "react-static build --staging",
+    "build": "react-static build",
+    "analyze": "react-static build --analyze",
+    "serve": "serve dist -p 3000"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/data-grid": "^4.0.0-alpha.37",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.60",
+    "@material-ui/styles": "^4.11.4",
+    "@mui/material": "^5.10.8",
+    "@reach/router": "^1.3.4",
+    "axios": "^0.21.1",
+    "moment": "^2.29.4",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-hot-loader": "^4.13.0",
+    "react-lazy-load-image-component": "^1.5.5",
+    "react-photo-view": "^1.2.2",
+    "react-progressive-graceful-image": "^0.6.14",
+    "react-router": "^5.2.1",
+    "react-router-dom": "^5.3.4",
+    "react-static": "^7.6.2",
+    "react-static-plugin-reach-router": "^7.5.1",
+    "react-static-plugin-react-router": "^7.6.2",
+    "react-static-plugin-sitemap": "^7.5.1",
+    "react-static-plugin-source-filesystem": "^7.5.1",
+    "use-image": "^1.0.8"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.20.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-config-react-tools": "^1.1.7",
+    "eslint-plugin-flowtype": "^5.2.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "serve": "^11.3.2"
+  }
+}

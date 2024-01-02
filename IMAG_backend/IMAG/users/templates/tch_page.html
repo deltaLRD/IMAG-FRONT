@@ -1,0 +1,482 @@
+{% extends 'base_tch.html' %}
+{% block style %}
+   .vis_button{
+    visibility: hidden;
+    display:inline;
+    }
+    #save_all{
+    visibility: hidden;
+    }
+   li{
+    line-height:40px;
+    display:flex;
+    justify-content:space-between;
+    }
+    .atitle{
+    font-size:40px;
+    font-family:"微软雅黑";
+    padding:20px 0px;
+    }
+    .li_name{
+    font-size:10px;
+    font-family:"微软雅黑";
+    }
+
+#add-circle{
+    background-color:#FFFFFFFF;
+     border:none;
+    visibility: hidden;
+    }
+    .add_title{
+    display:flex;
+    justify-content:space-between;
+    }
+{% endblock %}
+{% block center %}
+
+
+
+
+
+
+
+
+
+
+    <div class="media">
+        <div class="media-left media-middle">
+            <a href="#">
+                <img class="media-object" src="../../static/avatar/{{ tch_info.account }}.jpg"
+                     alt="{{ tch_info.account }}" width="180px" height="" id="imag_id">
+            </a>
+        </div>
+        <div class="media-body">
+
+            <h3 class="media-heading">{{ tch_info.Eng_name }}</h3>
+
+            <p><a src="http://www.njust.edu.cn/">Nanjing University of Science and Technology</a></p>
+
+
+            <p>Email : {{ tch_info.email }}</p>
+
+            <p id="profile">{{ tch_info.profile }}<a onclick="tran();">[中文版]</a></p>
+            <button type="button" class="btn btn-info" onclick="bulid()">编辑个人主页</button> <button type="button"  id="save_all" class="btn btn-info" onclick="save_all()">保存</button>
+
+        </div>
+    </div>
+
+    <hr>
+
+ <div class="add_title">
+        <div class="atitle" id="title_jn">论文</div>
+        <button class="layui-icon" id="add-circle"  name="jn_li" style="font-size: 30px;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">&#xe61f;</button>
+        </div>
+    <ul id="jn_id">
+            {% for row in jn_info_dict %}
+            <li class="jn_li" id="{{ row.id }}" value="{{ row['author'] }}">
+                <div class="li_name">{{ row.name}}
+            {% for auth in row['author'] %}
+                {{ auth }}
+            {% endfor %}
+                </div>
+            <div class="vis_button">
+                   <button type="button" onclick="upp(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-up"></i></button>
+                <button type="button"  onclick="loww(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-down"></i></button>
+            </div>
+            </li>
+           {% endfor %}
+    </ul>
+     <div class="add_title">
+         <div class="atitle" id="title_con">会议</div>
+         <button class="layui-icon" id="add-circle"  name="conf_li" style="font-size: 30px;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">&#xe61f;</button>
+     </div>
+    <ul id="conf_id">
+        {% for row  in conf_info_dict %}
+            <li class="conf_li" id="{{ row.id }}" value="{{ row['author'] }}">
+                <div class="li_name">{{ row.name }}
+                {% for auth in row['author'] %}
+                    {{ auth }}
+                {% endfor %}
+                </div>
+                <div class="vis_button">
+                     <button type="button" onclick="upp(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-up"></i></button>
+                <button type="button"  onclick="loww(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-down"></i></button>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+     <div class="add_title">
+    <div class="atitle" id="title_patent">专利</div>
+    <button class="layui-icon" id="add-circle"  name="patent_li" style="font-size: 30px;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">&#xe61f;</button>
+     </div>
+    <ul id="patent_id">
+        {% for row in patent_info %}
+            <li class="patent_li" id="{{ row.id }}" >
+                <div class="li_name">{{ row.name}} </div>
+                <div class="vis_button">
+                     <button type="button" onclick="upp(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-up"></i></button>
+                <button type="button"  onclick="loww(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-down"></i></button>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+     <div class="add_title">
+    <div class="atitle" id="title_honor">荣誉</div>
+    <button class="layui-icon" id="add-circle"  name="honor_li" style="font-size: 30px;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">&#xe61f;</button>
+    </div>
+    <ul id="honor_id">
+        {% for row in honor_info %}
+            <li class="honor_li" id="{{ row.id }}" >
+                 <div class="li_name">{{ row.name}} </div>
+                <div class="vis_button">
+                     <button type="button" onclick="upp(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-up"></i></button>
+                <button type="button"  onclick="loww(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-down"></i></button>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+     <div class="add_title">
+    <div class="atitle" id="title_pro">项目</div>
+    <button class="layui-icon" id="add-circle"  name="prog_li" style="font-size: 30px;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">&#xe61f;</button>
+     </div>
+    <ul id="prog_id">
+        {% for row in prog_info %}
+            <li class="prog_li" id="{{ row.id }}" >
+           <div class="li_name">{{ row.name}} </div>
+            <div class="vis_button">
+                <button type="button" onclick="upp(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-up"></i></button>
+                <button type="button"  onclick="loww(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-down"></i></button>
+            </div>
+            </li>
+        {% endfor %}
+    </ul>
+     <div class="add_title">
+        <div class="atitle" id="title_course">课程</div>
+        <button class="layui-icon" id="add-circle"  name="course_li" style="font-size: 30px;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">&#xe61f;</button>
+     </div>
+            <ul id="course_id">
+    {% for row in course_info %}
+                <li class="course_li" id="{{ row.id }}" >
+                     <div class="li_name">{{ row.name}} </div>
+                    <div class="vis_button">
+                         <button type="button" onclick="upp(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-up"></i></button>
+                    <button type="button"  onclick="loww(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-down"></i></button>
+                    </div>
+                </li>
+            {% endfor %}
+    </ul>
+     <div class="add_title">
+    <div class="atitle" id="title_comp">竞赛</div>
+    <button class="layui-icon" id="add-circle"  name="comp_li" style="font-size: 30px;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">&#xe61f;</button>
+     </div>
+    <ul id="comp_id">
+        {% for row in comp_info %}
+            <li class="comp_li" id="{{ row.id }}" >
+                 <div class="li_name">{{ row.name}} </div>
+                <div class="vis_button">
+                <button type="button" onclick="upp(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-up"></i></button>
+                <button type="button"  onclick="loww(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-down"></i></button>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+     <div class="add_title">
+    <div class="atitle" id="title_mono">专著</div>
+                <button class="layui-icon" id="add-circle"  name="mono_li" style="font-size: 30px;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">&#xe61f;</button>
+     </div>
+    <ul id="mono_id">
+        {% for row in mono_info %}
+            <li class="mono_li" id="{{ row.id }}" >
+               <div class="li_name">{{ row.name}} </div>
+                <div class="vis_button">
+                     <button type="button" onclick="upp(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-up"></i></button>
+                <button type="button"  onclick="loww(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-down"></i></button>
+                </div>
+            </li>
+
+        {% endfor %}
+    </ul>
+    <div class="add_title">
+    <div class="atitle" id="title_soft">软著</div> <div onclick="firmadd()"></div>
+     <button class="layui-icon" id="add-circle"  name="soft_li" style="font-size: 30px;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">&#xe61f;</button>
+    </div>
+    <ul id="soft_id">
+        {% for row in soft_info %}
+            <li class="soft_li" id="{{ row.id }}">
+                <div class="li_name">{{ row.name}} </div>
+                <div class="vis_button">
+                     <button type="button" onclick="upp(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-up"></i></button>
+                <button type="button"  onclick="loww(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-down"></i></button>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <table id="demo" lay-filter="test"></table>
+      </div>
+      <div class="modal-footer">
+        <button type="button"  class="btn btn-secondary" data-dismiss="modal">关闭</button>
+          <button type="button" id="open" class="btn btn-primary" data-dismiss="modal" onclick="firmadd(this)">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    {{ others_info }}
+
+   <a id="add_flag" ></a>
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+{#    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>#}
+</script>
+
+ <script>
+    pagehidden={}
+    pagehidden['conference']=[]
+    pagehidden['journal']=[]
+    pagehidden['program']=[]
+    pagehidden['software']=[]
+    pagehidden['competition']=[]
+    pagehidden['patent']=[]
+    pagehidden['honor']=[]
+    pagehidden['course']=[]
+    pagehidden['monograph']=[]
+$(document).ready(function(){
+     const conf_list=document.getElementsByClassName("conf_li")
+     const jn_list=document.getElementsByClassName("jn_li")
+     const prog_list=document.getElementsByClassName("prog_li")
+     const soft_list=document.getElementsByClassName("soft_li")
+     const course_list=document.getElementsByClassName("course_li")
+     const mono_list=document.getElementsByClassName("mono_li")
+     const honor_list=document.getElementsByClassName("honor_li")
+     const patent_list=document.getElementsByClassName("patent_li")
+     const comp_list=document.getElementsByClassName("comp_li")
+    for(let i=0; i<conf_list.length; i++){
+         pagehidden['conference'].push(parseInt(conf_list[i].id))
+     }
+     for(let i=0; i<jn_list.length; i++){
+         pagehidden['journal'].push(parseInt(jn_list[i].id))
+     }
+     for(let i=0;i<prog_list.length;i++){
+         pagehidden['program'].push(parseInt(prog_list[i].id))
+     }
+     for(let i=0;i<soft_list.length;i++){
+         pagehidden['software'].push(parseInt(prog_list[i].id))
+     }
+     for(let i=0;i<course_list.length;i++){
+         pagehidden['course'].push(parseInt(course_list[i].id))
+     }
+     for(let i=0;i<mono_list.length;i++){
+         pagehidden['monograph'].push(parseInt(mono_list[i].id))
+     }
+     for(let i=0;i<honor_list.length;i++){
+         pagehidden['honor'].push(parseInt(honor_list[i].id))
+     }
+     for(let i=0;i<patent_list.length;i++){
+         pagehidden['patent'].push(parseInt(patent_list[i].id))
+     }
+     for(let i=0;i<comp_list.length;i++){
+         pagehidden['competition'].push(parseInt(comp_list[i].id))
+     }
+})
+
+ const api_url={'jn_li':'journal','conf_li':'conference','patent_li':'patent','honor_li':'honor','prog_li':'program','course_li':'course','soft_li':'software','mono_li':'monograph','comp_li':'competition'}
+ let title;
+ var add_li;
+ var add_id
+ var table = layui.table;
+$('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    add_li = (button.attr("name"))
+    add_id = (button.parent().next().attr("id"))
+    const url = '/' + api_url[add_li] + '/api/' +{{ tch_info.account|tojson }};
+    table.render({
+        elem: '#demo' //指定原始表格元素选择器（推荐id选择器）
+        , height: 315,
+        url: url
+        , cols: [[ //标题栏
+            {checkbox: true}
+            , {field: 'index', title: 'ID', align: 'center', width: 20}
+            , {field: 'name', title: '名称', width: 500},
+            {field: 'author', title: '作者', width: 200},
+            {fixed: 'right', width: 60, align: 'center', toolbar: '#barDemo'}
+        ]],
+        done: function (res, curr, count) {
+            console.log(pagehidden[api_url[add_li]])
+            //遍历集合
+            layui.each(res.data, function (index, item) {
+
+                //将获取的选中行数据进行遍历
+                //array.indexOf 此方法判断数组中是否存在某个值，如果存在，则返回数组元素的下标，否则返回-1
+                if (pagehidden[api_url[add_li]].indexOf(item.id) > -1) {
+                    //点击去属性 lay-id='表格id'； index：要回显的行数下标，从0开始
+                    $("div[lay-id='demo'] td .layui-form-checkbox").eq(index).click();
+                }
+            })
+        }
+    })
+})
+    function firmadd(){
+        var checkStatus = table.checkStatus('demo');
+        var ul=document.getElementById(add_id)
+        while(ul.hasChildNodes()){
+            ul.removeChild(ul.firstChild);
+        }
+        var id = []
+        for(let i=0;i<checkStatus.data.length;i++) {
+            $("#"+add_id).append( '<li class='+add_li+' id='+checkStatus.data[i].id+' > <div class="li_name">'+checkStatus.data[i].name+'</div> <div class="vis_button" style="visibility:visible"> <button type="button" onclick="upp(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-up"></i></button> <button type="button"  onclick="loww(this)" class="layui-btn layui-btn-sm"><i class="layui-icon layui-icon-down"></i></button>  </li>')
+            id.push(checkStatus.data[i].id)
+        }
+        pagehidden[api_url[add_li]]=id
+    }
+
+
+ function dele(e) {
+    if($(e).parent().parent().prev().attr('class')==="atitle") $(e).parent().parent().prev().remove()
+      $(e).parent().parent().remove()
+
+ }
+
+ function bulid() {
+         const add=$(".add_title").find("#add-circle")
+         for(let i=0;i<add.length;i++){
+             add[i].style.visibility="visible"
+         }
+        const button =$('.vis_button')
+         for(let i=0; i<button.length; i++){
+            button[i].style.visibility = "visible";
+         }
+         $("#save_all").css("visibility","visible")
+
+     }
+
+ function save_all() {
+     const conf_list=document.getElementsByClassName("conf_li")
+     const jn_list=document.getElementsByClassName("jn_li")
+     const prog_list=document.getElementsByClassName("prog_li")
+     const soft_list=document.getElementsByClassName("soft_li")
+     const course_list=document.getElementsByClassName("course_li")
+     const mono_list=document.getElementsByClassName("mono_li")
+     const honor_list=document.getElementsByClassName("honor_li")
+     const patent_list=document.getElementsByClassName("patent_li")
+     const comp_list=document.getElementsByClassName("comp_li")
+     const conf = [];
+     const jn=[];
+     const prog=[];
+     const soft=[];
+     const course=[];
+     const mono=[];
+     const honor=[];
+     const patent=[];
+     const comp=[];
+     for(let i=0; i<conf_list.length; i++){
+         let id=conf_list[i].id.toString()
+         {#let list=conf_list[i].getAttribute('value')#}
+         conf.push(id)
+     }
+     for(let i=0; i<jn_list.length; i++){
+         let id=jn_list[i].id.toString()
+         {#let list=jn_list[i].getAttribute('value')#}
+         jn.push(id)
+     }
+     for(let i=0;i<prog_list.length;i++){
+         prog.push(prog_list[i].id)
+     }
+     for(let i=0;i<soft_list.length;i++){
+         soft.push(soft_list[i].id)
+     }
+     for(let i=0;i<course_list.length;i++){
+         course.push(course_list[i].id)
+     }
+     for(let i=0;i<mono_list.length;i++){
+         mono.push(mono_list[i].id)
+     }
+     for(let i=0;i<honor_list.length;i++){
+         honor.push(honor_list[i].id)
+     }
+     for(let i=0;i<patent_list.length;i++){
+         patent.push(patent_list[i].id)
+     }
+     for(let i=0;i<comp_list.length;i++){
+         comp.push(comp_list[i].id)
+     }
+    var page = {}
+    page['conf']=conf
+    page['jn']=jn
+    page['prog']=prog
+    page['soft']=soft
+    page['comp']=comp
+    page['patent']=patent
+    page['honor']=honor
+    page['course']=course
+    page['mono']=mono
+     const data_json={
+         account:Serve1.account,
+         display:page
+     }
+     console.log(data_json)
+     $.ajax({
+        type: 'POST',
+        url: "/users/user_page_back",
+        data: JSON.stringify(data_json),
+        contentType: 'application/json; charset=UTF-8',
+        dataType: 'json',
+         success: function(data) {
+             layer.msg(data['message'], {
+                icon: 1,
+                time: 1000,
+                offset: 't',
+            })
+        }})
+    const button =$('.vis_button')
+         for(let i=0; i<button.length; i++){
+            button[i].style.visibility = "hidden";
+         }
+          $("#save_all").css("visibility","hidden")
+ }
+
+ function upp(e) {
+        console.log($(e).parent().parent().prev().attr('class'))
+        // 点击li元素时
+     if( $(e).parent().parent().prev().attr('class')===$(e).parent().parent().attr('class')){
+         $(e).parent().parent().prev().before($(e).parent().parent())
+     }
+
+}
+function loww(e) {       // 点击li元素时
+    if( $(e).parent().parent().next().attr('class')===$(e).parent().parent().attr('class')){
+         $(e).parent().parent().next().after($(e).parent().parent())
+     }
+}
+ var Serve1={
+     profile_eng:{{ tch_info.profile|tojson }},
+     profile_ch:{{ tch_info.profile_c|tojson }},
+     account:{{ tch_info.account|tojson }}
+ }
+ tranx=function (){
+      pro=document.getElementById("profile")
+      temp=document.createElement("a")
+      temp.innerText="[中文版]"
+     pro.innerText=Serve1.profile_eng
+     temp.onclick=tran
+     pro.appendChild(temp)
+ }
+  tran=function (){
+        pro=document.getElementById("profile")
+        temp=document.createElement("a")
+        temp.innerText="[English Version]"
+        temp.onclick=tranx
+        pro.innerText=Serve1.profile_ch
+        pro.appendChild(temp)
+       }
+
+</script>
+{% endblock %}

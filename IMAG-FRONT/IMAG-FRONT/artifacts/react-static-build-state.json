@@ -1,0 +1,63 @@
+{
+  "prefetchRate": 5,
+  "maxThreads": null,
+  "disableRoutePrefixing": false,
+  "outputFileRate": 100,
+  "extensions": [
+    ".js",
+    ".jsx"
+  ],
+  "minLoadTime": 200,
+  "disablePreload": false,
+  "disableRuntime": false,
+  "preloadPollInterval": 300,
+  "productionSourceMaps": false,
+  "silent": false,
+  "entry": "index.js",
+  "basePath": "",
+  "assetsPath": "",
+  "plugins": [
+    [
+      "/workspace/IMAG-FRONT/node_modules/react-static-plugin-source-filesystem/node.api.js",
+      {
+        "location": "/workspace/IMAG-FRONT/src/pages"
+      }
+    ],
+    "/workspace/IMAG-FRONT/node_modules/react-static-plugin-reach-router/browser.api.js",
+    "/workspace/IMAG-FRONT/node_modules/react-static-plugin-sitemap/dist/node.api.js",
+    "/workspace/IMAG-FRONT/node_modules/react-static-plugin-react-router/browser.api.js",
+    "/workspace/IMAG-FRONT"
+  ],
+  "paths": {
+    "ROOT": "/workspace/IMAG-FRONT",
+    "SRC": "/workspace/IMAG-FRONT/src",
+    "DIST": "/workspace/IMAG-FRONT/dist",
+    "ASSETS": "/workspace/IMAG-FRONT/dist",
+    "PLUGINS": "/workspace/IMAG-FRONT/plugins",
+    "TEMP": "/workspace/IMAG-FRONT/tmp",
+    "ARTIFACTS": "/workspace/IMAG-FRONT/artifacts",
+    "PUBLIC": "/workspace/IMAG-FRONT/public",
+    "NODE_MODULES": "/workspace/IMAG-FRONT/node_modules",
+    "EXCLUDE_MODULES": "/workspace/IMAG-FRONT/node_modules",
+    "PACKAGE": "/workspace/IMAG-FRONT/package.json",
+    "HTML_TEMPLATE": "/workspace/IMAG-FRONT/dist/index.html",
+    "STATIC_DATA": "/workspace/IMAG-FRONT/dist/staticData"
+  },
+  "siteRoot": "/",
+  "publicPath": "/",
+  "extractCssChunks": false,
+  "inlineCss": false,
+  "babelExcludes": [],
+  "devServer": {
+    "host": "localhost",
+    "port": 3000
+  },
+  "terser": {
+    "terserOptions": {
+      "mangle": {},
+      "parse": {},
+      "compress": {},
+      "output": {}
+    }
+  }
+}

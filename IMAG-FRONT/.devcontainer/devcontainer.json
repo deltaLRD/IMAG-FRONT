@@ -1,0 +1,6 @@
+{
+  "name": "Basic Node.js",
+  "build": { "dockerfile": "Dockerfile" },
+  "remoteUser": "node",
+  "runArgs": ["--add-host=host.docker.internal:host-gateway", "--env-file",".devcontainer/devcontainer.env"]
+}

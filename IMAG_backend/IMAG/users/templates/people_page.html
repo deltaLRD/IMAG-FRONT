@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% block all %}
+
+
+{#    Faculty分割线#}
+    <div class="row">
+{#        <div class="col-md-1"></div>#}
+        <div class="col-md-4">
+            <h2><span class="glyphicon glyphicon-user" aria-hidden="true"> Faculty </span></h2>
+        </div>
+{#        <div class="col-md-10">#}
+{#            <br>#}
+{#            <hr/>#}
+{#        </div>#}
+    </div>
+    <br>
+    {#    Faculty#}
+
+    <div class="row">
+{#        <div class="col-md-1"></div>#}
+        {% for row in faculty %}
+        <div class="col-md-6">
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" src="./static/avatar/{{ row.account }}.jpg" alt="{{ row.account }}" width="100px" height="120">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{ row.name }}</h4>
+                        <p>Professor at Nanjing University of Science and Technology (NJUST)</p>
+                        <a href="/users/tch_page_public/{{ row.id }}">个人主页</a>
+                        <p>
+                            <address>
+                                Email: {{ row.email |default('', boolean=True) }}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Tel:{{ row.phone|default('', boolean=True) }}
+                            </address>
+                        </p>
+                    </div>
+                </div>
+        </div>
+{#        <div class="col-md-1"></div>#}
+     {% endfor %}
+    </div>
+
+
+    {#    Ph.D Candidate分割线#}
+     <div class="row">
+        <div class="col-md-4">
+            <h2><span class="glyphicon glyphicon-user" aria-hidden="true"> Ph.D Candidate </span></h2>
+        </div>
+{#        <div class="col-md-8">#}
+{#            <br>#}
+{#            <hr/>#}
+{#        </div>#}
+    </div>
+    <br>
+    {#    Ph.D Candidate#}
+
+    <div class="row">
+        {% for row in PhD %}
+{#        <div class="col-md-1"></div>#}
+        <div class="col-md-4">
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" src="./static/avatar/{{ row.account }}.jpg" alt="{{ row.account }}" width=100px" height="120px">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{ row.Eng_name }}| {{ row.name }}</h4>
+                    <p>September 2016 - now</p>
+                        <p>
+                           <address>
+                                Email: {{ row.email |default('', boolean=True) }}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Tel:{{ row.phone|default('', boolean=True) }}
+                           </address>
+                        </p>
+                    </div>
+                </div>
+        </div>
+     {% endfor %}
+    </div>
+
+<br>
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2><span class="glyphicon glyphicon-user" aria-hidden="true"> M.E Students </span></h2>
+        </div>
+{#        <div class="col-md-8">#}
+{#            <br>#}
+{#            <hr/>#}
+{#        </div>#}
+    </div>
+    <br>
+
+    {#    M.E Students#}
+    <div class="row">
+        {% for row in ME %}
+{#        <div class="col-md-1"></div>#}
+        <div class="col-md-4">
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" src="./static/avatar/{{ row.account }}.jpg" alt="{{ row.account }}" width="80px" height="96px">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{ row.name }}</h4>
+                        <p>September 2016 - now</p>
+                        <p>
+                            <address>
+                                Email: {{ row.email |default('', boolean=True) }}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Tel:{{ row.phone|default('', boolean=True) }}
+                           </address>
+                        </p>
+                    </div>
+                </div>
+        </div>
+     {% endfor %}
+    </div>
+
+
+
+
+    <script>
+    $(document).ready(function() {
+        document.getElementById("peo_id").className="active";
+ })
+</script>
+{% endblock %}

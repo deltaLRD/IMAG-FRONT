@@ -1,0 +1,90 @@
+{% extends 'base_tch.html' %}
+{% block head %}
+
+{% endblock %}
+
+
+{% block center %}
+
+
+    <form action="{{url_for('users.tch_info',account=tch_info.account)}}" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="media">
+              <div class="media-left media-middle">
+                  <img class="media-object" src="/users/static/avatar/{{ tch_info.account }}.jpg" width="100px" height="" alt="">
+                 <input type="file" name="avatar"   accept="image/gif, image/jpeg, image/png, image/jpg" >
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">{{ tch_info.account }}</h4>
+                个人简介：
+                  <textarea type="text" class="form-control" rows="3"  name="profile">{{ tch_info.profile }}</textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">姓名</label>
+        <input type="text" class="form-control" id="exampleInputPassword1" value="{{ tch_info.name }}" name="name">
+      </div>
+        <div class="form-group">
+        <label for="exampleInputPassword1">英文名</label>
+        <input type="text" class="form-control" value="{{ tch_info.Eng_name }}" name="Eng_name">
+      </div>
+
+            <div class="form-group">
+        <label for="exampleInputEmail1">用户类别</label><br>
+        <label class="radio-inline">
+          <input type="radio" name="classify" id="inlineRadio1" value="博士生导师"> 博士生导师
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="classify" id="inlineRadio2" value="硕士生导师"> 硕士生导师
+        </label>
+            <label class="radio-inline">
+          <input type="radio" name="classify" id="inlineRadio3" value="其他老师"> 其他老师
+        </label>
+      </div>
+        <div class="form-group">
+        <label for="exampleInputPassword1">重置密码</label>
+        <input type="password" class="form-control" id="password1" name="password">
+      </div>
+        <div class="form-group">
+        <label for="exampleInputPassword1">Tel</label>
+        <input type="text" class="form-control" value="{{ tch_info.phone }}" name="phone">
+      </div>
+        <div class="form-group">
+        <label for="exampleInputPassword1">Email</label>
+        <input type="text" class="form-control" value="{{ tch_info.email }}" name="email">
+      </div>
+        <div class="form-group">
+        <label for="exampleInputFile">个人简历</label>
+        <input type="file" id="exampleInputFile" name="resume">
+      </div>
+    {#  <div class="checkbox">#}
+    {#    <label>#}
+    {#      <input type="checkbox"> Check me out#}
+    {#    </label>#}
+    {#  </div>#}
+      <button type="submit" class="btn btn-default">更改
+      </button>
+</form>
+ <script >
+    var tch = "{{tch_info.tch_classify}}"
+    $(document).ready(function(){
+    if (tch ==="博士生导师"){
+       document.getElementById("inlineRadio1").checked = true;}
+        {#$("#inlineRadio1").attr(checked, true);}#}
+    else if( tch==="硕士生导师"){
+       document.getElementById("inlineRadio2").checked = true;}
+        {#$("#inlineRadio2").attr(checked, true);}#}
+    else if( tch==="其他老师"){
+       document.getElementById("inlineRadio3").checked = true;}
+    else if( tch==="博士生"){
+       document.getElementById("inlineRadio4").checked = true;}
+    else{
+        document.getElementById("inlineRadio5").checked = true;}
+
+}); </script>
+{% endblock %}

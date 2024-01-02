@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="PYTHON_MODULE" version="4">
+  <component name="Flask">
+    <option name="enabled" value="true" />
+  </component>
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="jdk" jdkName="imag" jdkType="Python SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+  <component name="TemplatesService">
+    <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/templates" />
+        <option value="$MODULE_DIR$/software/templates" />
+        <option value="$MODULE_DIR$/admins/templates" />
+        <option value="$MODULE_DIR$/competition/templates" />
+        <option value="$MODULE_DIR$/conference/templates" />
+        <option value="$MODULE_DIR$/course/templates" />
+        <option value="$MODULE_DIR$/journal/templates" />
+        <option value="$MODULE_DIR$/login/templates" />
+        <option value="$MODULE_DIR$/monograph/templates" />
+        <option value="$MODULE_DIR$/news/templates" />
+        <option value="$MODULE_DIR$/program/templates" />
+        <option value="$MODULE_DIR$/resource/templates" />
+        <option value="$MODULE_DIR$/users/templates" />
+        <option value="$MODULE_DIR$/patent/templates" />
+        <option value="$MODULE_DIR$/honor/templates" />
+        <option value="$MODULE_DIR$/others/templates" />
+      </list>
+    </option>
+  </component>
+</module>
