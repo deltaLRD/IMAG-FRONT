@@ -7,19 +7,19 @@ services:
       - ./IMAG_backend/.env
     extra_hosts:
       - "host.docker.internal:host-gateway"
-  front:
-    build:
-      context: ./IMAG-FRONT
-      dockerfile: ./nginx.Dockerfile
-    container_name: IMAG-front
-    ports:
-      - 80:80
-    volumes:
-      - type: bind
-        source: ./IMAG-FRONT/IMAG-FRONT
-        target: /workspace/IMAG-FRONT
-        bind:
-          propagation: rshared
+  # front:
+  #   build:
+  #     context: ./IMAG-FRONT
+  #     dockerfile: ./nginx.Dockerfile
+  #   container_name: IMAG-front
+  #   ports:
+  #     - 80:80
+  #   volumes:
+  #     - type: bind
+  #       source: ./IMAG-FRONT/IMAG-FRONT
+  #       target: /workspace/IMAG-FRONT
+  #       bind:
+  #         propagation: rshared
 
   builder:
     build: 
